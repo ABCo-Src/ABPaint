@@ -21,14 +21,15 @@ Elements are the fundamental building block of an ABSave document, so naturally 
 2. Defines custom rendering logic to "draw" them into the final displayed document.
 3. Define custom interaction logic to customize how user interaction can be performed, and how it affects the properties and element.
 
-All elements have the following base properties attached to them. Different elements can implement these in different ways, some may be auto-calculated, some may be controlled by the user, some may be stored when the element gets serialized (saved to a file/clipboard), that all depends on the type of element:
+All elements have the following base properties attached to them. Different elements can implement these in different ways, some may be auto-calculated, some may be controlled by the user, some may be stored when the element gets serialized (saved to a file/clipboard), that all depends on the type of element.
+
+The first set of properties are the "basic properties", these may be neded:
 
 - `OffsetX` (double)
 - `OffsetY` (double)
 - `TotalWidth` (double)
 - `TotalHeight` (double)
 - `BoundingBox` (ElementBounds)
-- `HasRotation` (double)
 - `Rotation` (int)
 
 The `OffsetX` and `OffsetY` is the offset where the element is positioned on the document.
@@ -79,3 +80,58 @@ It may be possible that one day ABPaint's renderer could become advanced enough 
 If you're changing the offset of an element, literally all that's going to be re-rendered is the position the element is rendered at. The element itself won't even be re-rendered, it will just cache the element's graphics as a bitmap, and then move that bitmap around, unless changing the `OffsetX` and `OffsetY` property actually affects how it renders. 
 
 There's no need for this at the moment, but could be something for the future, or maybe could just be implemented if any elements need it.
+
+## Implementation
+
+ABSave is broken up into the following components:
+
+- Core (contains core functionality)
+- UI (contains ViewModels and UI helpers)
+- UI.Desktop (contains Avalonia view)
+
+The `UI.Desktop` depends on `UI` while `UI` depends on `Core`. `UI.Desktop` should not interact directly with `Core`, it should always do things via `UI`.
+
+We use dependency injection on ViewModels and the core to help achieve a more loosely coupled structure.
+
+Within `Core`, you'll find the following sections for each division of ABPaint:
+
+- `Rendering` - All services used to physically render the document.
+- `Input` - All services used for user input. Keyboard, mouse etc. 
+- `Representation` - All services related to managing elements objects themselves, their properties etc.
+- `IO` - Services responsible for any sort of I/O, be it to files, clipboard etc.
+
+### Documents
+
+The `Document` class represents an ABPaint document. It's just a data structure and holds not logic by itself, and is therefore a sealed, concrete class you can use anywhere. If you're in a service and want to the get the current document, you can get a `IDocumentManager` and then call `GetCurrentDocument` on it.
+
+### Elements
+
+The elements structure needs to allow you clearly describe what operations an element supports.
+
+We can't do:
+```cs
+public class MyElement : Element, IRotatable, IScalable
+{
+    ...
+}
+```
+Because then when you a new feature is added (e.g. skewing), all elements would have to be updated to support it. And that not only breaks the open/closed principle, but also works out terribly for a pluggable architecture, since adding something just explodes.
+
+It's a really nice idea in theory, but it just doesn't work.
+
+So, it's all built into `Element`. 
+
+The abstract class `Element` represents an element. A lot of typical logic that doesn't change is already implemented in it, but you can override if you'd like.
+
+If you're creating a plugin, you can create your own custom `Element` like below. Just make sure to keep that key unique.
+```cs
+[SaveInheritanceKey("Author.MyPlugin.ElementName")]
+public class ElementName : Element
+{
+
+}
+```
+
+### Rendering
+
+The rendering engine is critical ABPaint since we are, after all, making images. It just iterates 
