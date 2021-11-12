@@ -12,6 +12,20 @@
 		<vm:MainViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	<DockPanel>
+		<Menu DockPanel.Dock="Top" Background="#009A24">
+			<MenuItem Header="_File" Foreground="White">
+				<MenuItem Header="Open" />
+				<Separator />
+				<MenuItem Header="Save" />
+			</MenuItem>
+			<MenuItem Header="_Edit" Foreground="White">
+				<MenuItem Header="Cut" HotKey="Ctrl+X" />
+				<MenuItem Header="Copy" HotKey="Ctrl+C" />
+				<MenuItem Header="Paste" HotKey="Ctrl+V" />
+			</MenuItem>
+		</Menu>
 
+		<TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	</DockPanel>
 </Window>

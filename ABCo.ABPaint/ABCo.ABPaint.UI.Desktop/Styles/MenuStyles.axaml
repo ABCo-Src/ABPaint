@@ -1,0 +1,23 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+			<Menu>
+				<MenuItem Header="_File">
+					<MenuItem Header="Open" />
+					<MenuItem Header="Save" />
+				</MenuItem>
+				<MenuItem Header="_Edit" />
+			</Menu>
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+	<Style Selector="MenuItem">
+		<Setter Property="ContextFlyout">
+			<MenuFlyout>
+				<MenuFlyoutPresenter CornerRadius="0" />
+			</MenuFlyout>
+		</Setter>
+	</Style>
+</Styles>
