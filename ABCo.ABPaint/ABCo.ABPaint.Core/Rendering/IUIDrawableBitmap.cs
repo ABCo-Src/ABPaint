@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ABCo.ABPaint.Core.Rendering
 {
-    public interface IUIRenderCanvas
+    public interface IUIDrawableBitmap
     {
         public void Start();
         public void Finish();

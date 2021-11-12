@@ -9,6 +9,6 @@ namespace ABCo.ABPaint.Core.Elements
 {
     public abstract class Element
     {
-        public abstract void Render(IUIRenderCanvas output);
+        public abstract void Render(IUIDrawableBitmap output);
     }
 }

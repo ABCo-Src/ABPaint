@@ -1,6 +1,6 @@
 ﻿using ABCo.ABPaint.Core.Elements;
 using ABCo.ABPaint.Core.Rendering;
-using ABCo.ABPaint.Core.Rendering.Documents;
+using ABCo.ABPaint.Core.Rendering.Core;
 using ABCo.ABPaint.Core.Representation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ABCo.ABPaint.Core.UnitTests.Rendering.Documents
+namespace ABCo.ABPaint.Core.UnitTests.Rendering.Core
 {
     [TestClass]
     public class DocumentRendererTests
@@ -41,13 +41,13 @@ namespace ABCo.ABPaint.Core.UnitTests.Rendering.Documents
                 arr[i].Received().Render(_canvas);
         }
 
-        IUIRenderCanvas _canvas;
+        IUIDrawableBitmap _canvas;
         DocumentRenderer _renderer;
 
         [TestInitialize]
         public void Init()
         {
-            _canvas = Substitute.For<IUIRenderCanvas>();
+            _canvas = Substitute.For<IUIDrawableBitmap>();
             _renderer = new DocumentRenderer(_canvas);
         }
     }

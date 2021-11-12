@@ -5,24 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ABCo.ABPaint.Core.Rendering.Documents
+namespace ABCo.ABPaint.Core.Rendering.Core
 {
     public class DocumentRenderer : IDocumentRenderer
     {
-        IUIRenderCanvas _canvas;
+        readonly IUIDrawableBitmap _output;
 
-        public DocumentRenderer(IUIRenderCanvas canvas) => _canvas = canvas;
+        public DocumentRenderer(IUIDrawableBitmap output) => _output = output;
 
         public void Render(Document doc)
         {
-            _canvas.Start();
+            _output.Start();
 
             for (int i = 0; i < doc.Elements.Length; i++)
             {
-                doc.Elements[i].Render(_canvas);
+                doc.Elements[i].Render(_output);
             }
 
-            _canvas.Finish();
+            _output.Finish();
         }
     }
 }
