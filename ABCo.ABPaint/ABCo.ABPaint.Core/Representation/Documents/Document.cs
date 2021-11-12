@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ABCo.ABPaint.Core.Elements;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace ABCo.ABPaint.Core.Representation
 {
     public class Document
     {
+        public Element[] Elements { get; set; }
     }
 }

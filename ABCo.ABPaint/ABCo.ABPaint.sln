@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCo.ABPaint.UI.Desktop", "ABCo.ABPaint.UI.Desktop\ABCo.ABPaint.UI.Desktop.csproj", "{093A6ECE-DBC0-46B0-8A32-B6AEA8EFAC3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABCo.ABPaint.UI.Desktop", "ABCo.ABPaint.UI.Desktop\ABCo.ABPaint.UI.Desktop.csproj", "{093A6ECE-DBC0-46B0-8A32-B6AEA8EFAC3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCo.ABPaint.UI", "ABCo.ABPaint.UI\ABCo.ABPaint.UI.csproj", "{545676D5-15A7-4FBB-9DAF-503F8E308A2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABCo.ABPaint.UI", "ABCo.ABPaint.UI\ABCo.ABPaint.UI.csproj", "{545676D5-15A7-4FBB-9DAF-503F8E308A2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCo.ABPaint.Core", "ABCo.ABPaint.Core\ABCo.ABPaint.Core.csproj", "{21542FA6-A883-4CC2-893D-0D858854A9BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABCo.ABPaint.Core", "ABCo.ABPaint.Core\ABCo.ABPaint.Core.csproj", "{21542FA6-A883-4CC2-893D-0D858854A9BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ABCo.ABPaint.Core.UnitTests", "tests\ABCo.ABPaint.Core.UnitTests\ABCo.ABPaint.Core.UnitTests.csproj", "{F64BB60D-FD45-48C4-8141-C509D959E040}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{21542FA6-A883-4CC2-893D-0D858854A9BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21542FA6-A883-4CC2-893D-0D858854A9BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21542FA6-A883-4CC2-893D-0D858854A9BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F64BB60D-FD45-48C4-8141-C509D959E040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F64BB60D-FD45-48C4-8141-C509D959E040}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F64BB60D-FD45-48C4-8141-C509D959E040}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F64BB60D-FD45-48C4-8141-C509D959E040}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

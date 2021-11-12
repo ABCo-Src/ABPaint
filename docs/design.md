@@ -134,4 +134,10 @@ public class ElementName : Element
 
 ### Rendering
 
-The rendering engine is critical ABPaint since we are, after all, making images. It just iterates 
+The rendering engine is critical ABPaint since we are, after all, making images. Rendering is very difficult because we still need to maintain UI-seperation, while also rendering into a bitmap destination efficiently. So, we have the UI provide a `IUIRenderCanvas`, which provides a blank canvas we can draw on using the exposed methods from the UI.
+
+
+
+### Interface
+
+The `IKeyboardManager` is responsible for handling keyboard inputs.
