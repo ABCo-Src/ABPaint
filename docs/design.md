@@ -134,7 +134,21 @@ public class ElementName : Element
 
 ### Rendering
 
-The rendering engine is critical ABPaint since we are, after all, making images. Rendering is very difficult because we still need to maintain UI-seperation, while also rendering into a bitmap destination efficiently. So, we have the UI provide a `IUIRenderCanvas`, which provides a blank canvas we can draw on using the exposed methods from the UI.
+The rendering engine is critical ABPaint since we are, after all, making images. Rendering is very difficult because we still need to maintain UI-seperation, while also rendering into a destination efficiently. So, we have a `IDrawTarget` provided to the renderers.
+
+The UI provides this `IDrawTarget`, and it represents a blank bitmap we can draw on using the exposed methods.
+
+This draw target is initialized by the rendering using `Initialize`. And this is passed how many pixels *wide* and how many pixels *high* we actually need in the image. The renderer will set this as needed.
+
+Now, one tricky part is how we should handle elements rendering. Obviously it's done on the `Element` object to keep things together, but should we directly pass the `IDrawTarget` to the `Element`? The issue with this is the element has to *manually* add its position offset to everything it renders, which makes every single element's logic more complex, and could *possibly* prevent performance improvements in the future if the UI renderer ever provided that built-in.
+
+So, we need to make it so the `IDrawTarget` we pass to the element somehow offsets everything it draws. We also need to consider being able to easily rotate and maybe scale everything a element writes.
+
+Right now, we can just make a wrapper and pass that to each element, but in the future it might be a good idea to do this:
+
+So it makes sense that we're going to need to initiaize a new `IDrawTarget` that's able to apply these transformations to everything an element draws. The thing is, the UI might have something like this *built in*. Maybe the UI has the ability to translate every draw operation built-in, and it wouldn't be efficient to write our own.
+
+So, we have a `ITransformedDrawTargetProvider`, which is a *provider* that *gives us* a new draw target that applies a given transformation to everything drawn to it, and the UI can override these to provide specialized transformed draw target, if it would like.
 
 
 
