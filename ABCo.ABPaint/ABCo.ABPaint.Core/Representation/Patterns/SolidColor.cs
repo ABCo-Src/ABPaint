@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ABCo.ABPaint.Core.Representation.Patterns
 {
-    public class Pattern
+    internal class SolidColor : Pattern
     {
-        public static Pattern White { get; } = new SolidColor(0xFFFFFF00);
+        // RRGGBBXX
+        public uint ColorValue { get; }
+
+        public SolidColor(uint colorValue) => ColorValue = colorValue;
     }
 }
