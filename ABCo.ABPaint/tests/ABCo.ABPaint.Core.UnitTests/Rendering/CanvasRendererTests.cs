@@ -15,9 +15,23 @@ namespace ABCo.ABPaint.Core.UnitTests.Rendering
     public class CanvasRendererTests
     {
         [TestMethod]
-        public void Render_SquareCanvas_Centered()
+        public void Render_SquareCanvas_CenteredFill()
         {
-            var output = Substitute.For<IUIDrawableBitmap>();
+            var output = Substitute.For<IDrawTarget>();
+            output.PixelWidth.Returns(150);
+            output.PixelHeight.Returns(150);
+
+            var canvasRenderer = new CanvasRenderer(output);
+            var canvas = new Canvas(100, 100);
+
+            canvasRenderer.Render(canvas);
+            output.Received().FillRectangle(25, 25, canvas.PixelWidth, canvas.PixelHeight, Pattern.White);
+        }
+
+        [TestMethod]
+        public void Render_SquareCanvas_CenteredFill()
+        {
+            var output = Substitute.For<IDrawTarget>();
             output.PixelWidth.Returns(150);
             output.PixelHeight.Returns(150);
 
@@ -31,7 +45,7 @@ namespace ABCo.ABPaint.Core.UnitTests.Rendering
         [TestMethod]
         public void Render_RectangleCanvas_Centered()
         {
-            var output = Substitute.For<IUIDrawableBitmap>();
+            var output = Substitute.For<IDrawTarget>();
             output.PixelWidth.Returns(150);
             output.PixelHeight.Returns(300);
 

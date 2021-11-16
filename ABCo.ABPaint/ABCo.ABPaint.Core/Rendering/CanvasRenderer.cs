@@ -11,9 +11,9 @@ namespace ABCo.ABPaint.Core.Rendering
 {
     public class CanvasRenderer : ICanvasRenderer
     {
-        IUIDrawableBitmap _output;
+        IDrawTarget _output;
 
-        public CanvasRenderer(IUIDrawableBitmap output) => _output = output;
+        public CanvasRenderer(IDrawTarget output) => _output = output;
 
         public void Render(Canvas canvas)
         {

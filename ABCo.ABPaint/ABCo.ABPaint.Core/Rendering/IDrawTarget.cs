@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ABCo.ABPaint.Core.Rendering
 {
-    public interface IUIDrawableBitmap
+    public interface IDrawTarget
     {
         public int PixelWidth { get; }
         public int PixelHeight { get; }

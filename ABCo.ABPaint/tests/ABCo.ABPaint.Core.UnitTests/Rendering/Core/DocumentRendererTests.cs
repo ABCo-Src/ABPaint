@@ -41,13 +41,13 @@ namespace ABCo.ABPaint.Core.UnitTests.Rendering.Core
                 arr[i].Received().Render(_canvas);
         }
 
-        IUIDrawableBitmap _canvas;
+        IDrawTarget _canvas;
         DocumentRenderer _renderer;
 
         [TestInitialize]
         public void Init()
         {
-            _canvas = Substitute.For<IUIDrawableBitmap>();
+            _canvas = Substitute.For<IDrawTarget>();
             _renderer = new DocumentRenderer(_canvas);
         }
     }

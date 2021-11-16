@@ -9,9 +9,9 @@ namespace ABCo.ABPaint.Core.Rendering.Core
 {
     public class DocumentRenderer : IDocumentRenderer
     {
-        readonly IUIDrawableBitmap _output;
+        readonly IDrawTarget _output;
 
-        public DocumentRenderer(IUIDrawableBitmap output) => _output = output;
+        public DocumentRenderer(IDrawTarget output) => _output = output;
 
         public void Render(Document doc)
         {
