@@ -17,29 +17,35 @@ namespace ABCo.ABPaint.Core.UnitTests.Rendering
         [TestMethod]
         public void Render_SquareCanvas_CenteredFill()
         {
-            var output = Substitute.For<IDrawTarget>();
-            output.PixelWidth.Returns(150);
-            output.PixelHeight.Returns(150);
+            _canvas.PixelWidth.Returns(150);
+            _canvas.PixelHeight.Returns(150);
 
-            var canvasRenderer = new CanvasRenderer(output);
             var canvas = new Canvas(100, 100);
 
-            canvasRenderer.Render(canvas, new RenderContext(output));
-            output.Received().FillRectangle(25, 25, canvas.PixelWidth, canvas.PixelHeight, Pattern.White);
+            _renderer.Render(canvas, new RenderContext(_canvas));
+            _canvas.Received().FillRectangle(25, 25, canvas.PixelWidth, canvas.PixelHeight, Pattern.White);
         }
 
         [TestMethod]
         public void Render_RectangleCanvas_CenteredFill()
         {
-            var output = Substitute.For<IDrawTarget>();
-            output.PixelWidth.Returns(150);
-            output.PixelHeight.Returns(300);
+            _canvas.PixelWidth.Returns(150);
+            _canvas.PixelHeight.Returns(300);
 
-            var canvasRenderer = new CanvasRenderer(output);
             var canvas = new Canvas(100, 200);
 
-            canvasRenderer.Render(canvas, new RenderContext(output));
-            output.Received().FillRectangle(25, 50, canvas.PixelWidth, canvas.PixelHeight, Pattern.White);
+            _renderer.Render(canvas, new RenderContext(_canvas));
+            _canvas.Received().FillRectangle(25, 50, canvas.PixelWidth, canvas.PixelHeight, Pattern.White);
+        }
+
+        IDrawTarget _canvas;
+        ICanvasRenderer _renderer;
+
+        [TestInitialize]
+        public void Init()
+        {
+            _canvas = Substitute.For<IDrawTarget>();
+            _renderer = new CanvasRenderer(_canvas);
         }
     }
 }
