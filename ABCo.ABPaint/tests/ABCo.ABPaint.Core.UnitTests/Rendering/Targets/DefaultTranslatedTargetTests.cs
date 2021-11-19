@@ -12,45 +12,36 @@ using System.Threading.Tasks;
 namespace ABCo.ABPaint.Core.UnitTests.Rendering.Targets
 {
     [TestClass]
-    public class DefaultTranslatedTargetTests
+    public class DefaultTranslatedTargetTests : CanvasBaseTest
     {
         [TestMethod]
-        public void Start_ThrowsException() => Assert.ThrowsException<Exception>(() => new DefaultTranslatedTarget(0, 0, Substitute.For<IDrawTarget>()).Start());
+        public void Start_ThrowsException() => Assert.ThrowsException<Exception>(() => new DefaultTranslatedTarget(0, 0, _canvas).Start());
 
         [TestMethod]
-        public void Finish_ThrowsException() => Assert.ThrowsException<Exception>(() => new DefaultTranslatedTarget(0, 0, Substitute.For<IDrawTarget>()).Finish());
+        public void Finish_ThrowsException() => Assert.ThrowsException<Exception>(() => new DefaultTranslatedTarget(0, 0, _canvas).Finish());
 
         [TestMethod]
         public void DrawRectangle_CallsTransformed()
         {
-            var baseTarget = Substitute.For<IDrawTarget>();
-            var target = new DefaultTranslatedTarget(20, 25, baseTarget);
-
+            var target = new DefaultTranslatedTarget(20, 25, _canvas);
             target.DrawRectangle(50, 70, 20, 30, Pattern.White);
-
-            baseTarget.Received().DrawRectangle(70, 95, 20, 30, Pattern.White);
+            _canvas.Received().DrawRectangle(70, 95, 20, 30, Pattern.White);
         }
 
         [TestMethod]
         public void DrawAndFillRectangle_CallsTransformed()
         {
-            var baseTarget = Substitute.For<IDrawTarget>();
-            var target = new DefaultTranslatedTarget(5, 10, baseTarget);
-
+            var target = new DefaultTranslatedTarget(5, 10, _canvas);
             target.DrawAndFillRectangle(90, 110, 20, 30, Pattern.White);
-
-            baseTarget.Received().DrawAndFillRectangle(95, 120, 20, 30, Pattern.White);
+            _canvas.Received().DrawAndFillRectangle(95, 120, 20, 30, Pattern.White);
         }
 
         [TestMethod]
         public void FillRectangle_CallsTransformed()
         {
-            var baseTarget = Substitute.For<IDrawTarget>();
-            var target = new DefaultTranslatedTarget(15, 25, baseTarget);
-
+            var target = new DefaultTranslatedTarget(15, 25, _canvas);
             target.FillRectangle(50, 70, 20, 30, Pattern.White);
-
-            baseTarget.Received().FillRectangle(65, 95, 20, 30, Pattern.White);
+            _canvas.Received().FillRectangle(65, 95, 20, 30, Pattern.White);
         }
     }
 }

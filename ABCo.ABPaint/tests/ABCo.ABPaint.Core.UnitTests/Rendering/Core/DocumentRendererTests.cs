@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace ABCo.ABPaint.Core.UnitTests.Rendering.Core
 {
     [TestClass]
-    public class DocumentRendererTests
+    public class DocumentRendererTests : CanvasBaseTest
     {
         [TestMethod]
         public void Render_StartAndFinish()
@@ -41,14 +41,9 @@ namespace ABCo.ABPaint.Core.UnitTests.Rendering.Core
                 arr[i].Received().Render(new RenderContext(_canvas));
         }
 
-        IDrawTarget _canvas;
         DocumentRenderer _renderer;
 
         [TestInitialize]
-        public void Init()
-        {
-            _canvas = Substitute.For<IDrawTarget>();
-            _renderer = new DocumentRenderer(_canvas);
-        }
+        public void InitRenderer() => _renderer = new DocumentRenderer(_canvas);
     }
 }

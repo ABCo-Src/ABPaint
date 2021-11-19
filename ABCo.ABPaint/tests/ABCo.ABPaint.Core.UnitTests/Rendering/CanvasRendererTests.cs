@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace ABCo.ABPaint.Core.UnitTests.Rendering
 {
     [TestClass]
-    public class CanvasRendererTests
+    public class CanvasRendererTests : CanvasBaseTest
     {
         [TestMethod]
         public void Render_SquareCanvas_CenteredFill()
@@ -38,14 +38,9 @@ namespace ABCo.ABPaint.Core.UnitTests.Rendering
             _canvas.Received().FillRectangle(25, 50, canvas.PixelWidth, canvas.PixelHeight, Pattern.White);
         }
 
-        IDrawTarget _canvas;
         ICanvasRenderer _renderer;
 
         [TestInitialize]
-        public void Init()
-        {
-            _canvas = Substitute.For<IDrawTarget>();
-            _renderer = new CanvasRenderer(_canvas);
-        }
+        public void InitRenderer() => _renderer = new CanvasRenderer(_canvas);
     }
 }
