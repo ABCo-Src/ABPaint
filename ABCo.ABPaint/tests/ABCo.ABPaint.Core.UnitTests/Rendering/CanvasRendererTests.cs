@@ -24,7 +24,7 @@ namespace ABCo.ABPaint.Core.UnitTests.Rendering
             var canvasRenderer = new CanvasRenderer(output);
             var canvas = new Canvas(100, 100);
 
-            canvasRenderer.Render(canvas);
+            canvasRenderer.Render(canvas, new RenderContext(output));
             output.Received().FillRectangle(25, 25, canvas.PixelWidth, canvas.PixelHeight, Pattern.White);
         }
 
@@ -38,7 +38,7 @@ namespace ABCo.ABPaint.Core.UnitTests.Rendering
             var canvasRenderer = new CanvasRenderer(output);
             var canvas = new Canvas(100, 200);
 
-            canvasRenderer.Render(canvas);
+            canvasRenderer.Render(canvas, new RenderContext(output));
             output.Received().FillRectangle(25, 50, canvas.PixelWidth, canvas.PixelHeight, Pattern.White);
         }
     }

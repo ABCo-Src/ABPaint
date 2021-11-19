@@ -9,6 +9,6 @@ namespace ABCo.ABPaint.Core.Rendering
 {
     public interface ICanvasRenderer
     {
-        public void Render(Canvas canvas);
+        public void Render(Canvas canvas, RenderContext ctx);
     }
 }

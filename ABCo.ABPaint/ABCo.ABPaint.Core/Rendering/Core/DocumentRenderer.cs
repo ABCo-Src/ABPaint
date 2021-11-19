@@ -19,7 +19,7 @@ namespace ABCo.ABPaint.Core.Rendering.Core
 
             for (int i = 0; i < doc.Elements.Length; i++)
             {
-                doc.Elements[i].Render(_output);
+                doc.Elements[i].Render(new RenderContext(_output));
             }
 
             _output.Finish();

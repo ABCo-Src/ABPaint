@@ -38,7 +38,7 @@ namespace ABCo.ABPaint.Core.UnitTests.Rendering.Core
             _renderer.Render(doc);
 
             for (int i = 0; i < arr.Length; i++)
-                arr[i].Received().Render(_canvas);
+                arr[i].Received().Render(new RenderContext(_canvas));
         }
 
         IDrawTarget _canvas;

@@ -15,7 +15,7 @@ namespace ABCo.ABPaint.Core.Rendering
 
         public CanvasRenderer(IDrawTarget output) => _output = output;
 
-        public void Render(Canvas canvas)
+        public void Render(Canvas canvas, RenderContext ctx)
         {
 #if DEBUG
             Debug.Assert(canvas.PixelWidth < _output.PixelWidth);
