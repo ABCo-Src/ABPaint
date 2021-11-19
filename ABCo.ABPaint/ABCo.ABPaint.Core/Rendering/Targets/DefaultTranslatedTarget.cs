@@ -24,6 +24,16 @@ namespace ABCo.ABPaint.Core.Rendering.Targets
             _base.FillRectangle(x + _translateX, y + _translateY, width, height, pattern);
         }
 
+        public void DrawRectangle(int x, int y, int width, int height, Pattern pattern)
+        {
+            _base.DrawRectangle(x + _translateX, y + _translateY, width, height, pattern);
+        }
+
+        public void DrawAndFillRectangle(int x, int y, int width, int height, Pattern pattern)
+        {
+            _base.DrawAndFillRectangle(x + _translateX, y + _translateY, width, height, pattern);
+        }
+
         // TODO: Better exception objects?
         public void Start() => throw new Exception("Cannot start a 'DefaultTranslatedTarget'");
         public void Finish() => throw new Exception("Cannot start a 'DefaultTranslatedTarget'");

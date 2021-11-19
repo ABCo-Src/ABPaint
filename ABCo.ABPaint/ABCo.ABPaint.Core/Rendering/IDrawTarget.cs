@@ -14,6 +14,8 @@ namespace ABCo.ABPaint.Core.Rendering
 
         public void Start();
         public void Finish();
+        public void DrawRectangle(int x, int y, int width, int height, Pattern pattern);
         public void FillRectangle(int x, int y, int width, int height, Pattern pattern);
+        public void DrawAndFillRectangle(int x, int y, int width, int height, Pattern pattern);
     }
 }
